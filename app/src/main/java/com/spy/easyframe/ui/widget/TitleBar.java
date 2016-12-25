@@ -103,9 +103,20 @@ public class TitleBar extends RelativeLayout {
         LayoutInflater.from(mContext).inflate(R.layout.vw_titlebar_center, this, true);
         leftIcon = (ImageView) findViewById(R.id.titlebar_left_icon);
         centerTitle = (TextView) findViewById(R.id.titlenar_contentext);
-
+        leftIcon.setVisibility(VISIBLE);
         setTitle(centerTitle, title);
         setIcon(leftIcon, listener1);
+    }
+
+    /**
+     * 初始化标题栏，适用于标题在中间的情况
+     */
+    public void setTitleInfo(String title) {
+        LayoutInflater.from(mContext).inflate(R.layout.vw_titlebar_center, this, true);
+        leftIcon = (ImageView) findViewById(R.id.titlebar_left_icon);
+        centerTitle = (TextView) findViewById(R.id.titlenar_contentext);
+
+        setTitle(centerTitle, title);
     }
 
     private void setTitle(TextView button, String res) {

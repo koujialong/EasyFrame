@@ -19,20 +19,27 @@ import android.webkit.WebViewClient;
 import com.spy.easyframe.R;
 import com.spy.easyframe.system.IntentTools;
 import com.spy.easyframe.ui.widget.ProgressWebView;
+import com.spy.easyframe.ui.widget.TitleBar;
 
 import java.lang.ref.WeakReference;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
 /**
  * 基于webview的承载H5的页面
  */
 public class WebViewActivity extends BaseActivity {
     private static final String TAG = WebViewActivity.class.getSimpleName();
+    @Bind(R.id.mTitle)
+    TitleBar mTitlebar;
+    @Bind(R.id.webView)
+    ProgressWebView mWebView;
 
     /**
      * view
      */
     //private TitleBar mTitleBar;
-    private ProgressWebView mWebView;
     private View.OnClickListener mTitleBarLeftTxtListener;
     private View.OnClickListener mTitleBarRightImageListener;
 
@@ -57,6 +64,7 @@ public class WebViewActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web);
+        ButterKnife.bind(this);
         parseIntent(getIntent());
         initView();
         initListener();
@@ -74,11 +82,12 @@ public class WebViewActivity extends BaseActivity {
     }
 
     protected void initView() {
-        //mTitleBar = (TitleBar) findViewById(R.id.title_bar);
-        //
-        // ImmersedStatusbarUtils.initAfterSetContentView(this, mTitleBar);
-        mWebView = (ProgressWebView) findViewById(R.id.webView);
-
+        mTitlebar.setTitleInfo(mTitle, new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
 
@@ -101,12 +110,12 @@ public class WebViewActivity extends BaseActivity {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 // TODO Auto-generated method stub
-                if( url.startsWith("http:") || url.startsWith("https:") ) {
+                if (url.startsWith("http:") || url.startsWith("https:")) {
                     return false;
                 }
                 // Otherwise allow the OS to handle things like tel, mailto, etc.
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                startActivity( intent );
+                startActivity(intent);
                 finish();
                 //返回值是true的时候控制去WebView打开，为false调用系统浏览器或第三方浏览器
                 return true;
@@ -114,7 +123,7 @@ public class WebViewActivity extends BaseActivity {
 
             @Override
             public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest request) {
-                if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 //                    webLog(request.getUrl().toString());
                 }
                 return super.shouldInterceptRequest(view, request);
@@ -123,7 +132,7 @@ public class WebViewActivity extends BaseActivity {
 
             @Override
             public WebResourceResponse shouldInterceptRequest(WebView view, String url) {
-                if (Build.VERSION.SDK_INT<Build.VERSION_CODES.LOLLIPOP) {
+                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
                     //webLog(url);
                 }
                 return super.shouldInterceptRequest(view, url);
@@ -186,7 +195,6 @@ public class WebViewActivity extends BaseActivity {
         }
         return super.onKeyDown(keyCode, event);
     }
-
 
 
     private static class InnerHandler extends Handler {

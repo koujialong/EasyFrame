@@ -4,7 +4,7 @@ import android.util.Log;
 
 import com.spy.easyframe.model.impl.IBaseModel;
 import com.spy.easyframe.network.NetWork;
-import com.spy.easyframe.presenter.impl.IGetDatePresenter;
+import com.spy.easyframe.presenter.impl.IBannerPresenter;
 
 import java.util.List;
 
@@ -184,8 +184,8 @@ public class BannerModel implements IBaseModel{
         if (subscription!=null&&!subscription.isUnsubscribed()){
             subscription.unsubscribe();
         }
-        subscription= NetWork.getBannerApi()
-                .getBanner(page, limit, type)
+        subscription= NetWork.getBaseApi()
+                .getBannerList(page, limit, type)
                 .map(new Func1<BannerModel, List<ItemBean>>() {
                     @Override
                     public List<ItemBean> call(BannerModel bannerModel) {
@@ -210,7 +210,7 @@ public class BannerModel implements IBaseModel{
     private int page,limit;
     private String type;
     private List<BannerModel.ItemBean> itemBeens;
-    private IGetDatePresenter iGetDatePresenter;
+    private IBannerPresenter iGetDatePresenter;
     @Override
     public void setParam(Object ... args){
         this.page= (int) args[0];
@@ -218,7 +218,7 @@ public class BannerModel implements IBaseModel{
         this.type= (String) args[2];
     }
 
-    public BannerModel(IGetDatePresenter iGetDatePresenter) {
+    public BannerModel(IBannerPresenter iGetDatePresenter) {
         this.iGetDatePresenter = iGetDatePresenter;
     }
 

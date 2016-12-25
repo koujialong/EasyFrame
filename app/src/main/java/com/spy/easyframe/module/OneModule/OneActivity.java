@@ -6,7 +6,8 @@ import android.util.Log;
 import com.spy.easyframe.R;
 import com.spy.easyframe.model.BannerModel;
 import com.spy.easyframe.module.OneModule.impl.IOneActivity;
-import com.spy.easyframe.presenter.OneActivityPresenter;
+import com.spy.easyframe.module.impl.IBannerView;
+import com.spy.easyframe.presenter.BannerPresenter;
 import com.spy.easyframe.ui.BaseActivity;
 import com.spy.easyframe.ui.WebViewActivity;
 import com.spy.easyframe.ui.widget.TitleBar;
@@ -20,7 +21,7 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class OneActivity extends BaseActivity implements IOneActivity {
+public class OneActivity extends BaseActivity implements IBannerView {
 
     private static final String TAG = OneActivity.class.getSimpleName();
 
@@ -28,7 +29,7 @@ public class OneActivity extends BaseActivity implements IOneActivity {
     Banner banner;
     @Bind(R.id.mTitle)
     TitleBar mTitle;
-    private OneActivityPresenter oneActivityPresenter;
+    private BannerPresenter oneActivityPresenter;
     private String images[];
     private List<BannerModel.ItemBean> itemBeens;
 
@@ -43,8 +44,8 @@ public class OneActivity extends BaseActivity implements IOneActivity {
 
     @Override
     protected void initData() {
-        mTitle.setTitleInfo("首页",null);
-        oneActivityPresenter = new OneActivityPresenter(this, subscription);
+        mTitle.setTitleInfo("首页");
+        oneActivityPresenter = new BannerPresenter(this, subscription);
         oneActivityPresenter.getDate(1, 10, "");
     }
 
@@ -71,7 +72,6 @@ public class OneActivity extends BaseActivity implements IOneActivity {
         this.itemBeens = itemBeens;
         images = new String[itemBeens.size()];
         for (int i = 0; i < itemBeens.size(); i++) {
-            Log.e("TAG", itemBeens.get(i).getTitle());
             images[i] = itemBeens.get(i).getImg_url();
         }
         //设置banner样式

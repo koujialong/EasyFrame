@@ -1,6 +1,6 @@
 package com.spy.easyframe.network;
 
-import com.spy.easyframe.network.api.BannerApi;
+import com.spy.easyframe.network.api.BaseApi;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -18,7 +18,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 * @return:
 */
 public class NetWork {
-    private static BannerApi bannerApi;
+    private static BaseApi bannerApi;
     private static HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor().
             setLevel(HttpLoggingInterceptor.Level.BASIC);
     private static OkHttpClient okHttpClient=new OkHttpClient.Builder().
@@ -30,9 +30,9 @@ public class NetWork {
     private static final String virtual_host="http://wp.500win.cn";
 
 
-    public static BannerApi getBannerApi(){
+    public static BaseApi getBaseApi(){
         if (bannerApi==null){
-            bannerApi=getRetrofit().create(BannerApi.class);
+            bannerApi=getRetrofit().create(BaseApi.class);
         }
         return bannerApi;
     }

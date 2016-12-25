@@ -4,6 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+    <com.spy.easyframe.ui.widget.TitleBar
+        android:id="@+id/mTitle"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
 
     <com.spy.easyframe.ui.widget.ProgressWebView
         android:id="@+id/webView"

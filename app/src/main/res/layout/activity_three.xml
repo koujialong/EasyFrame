@@ -4,10 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.spy.easyframe.module.ThreeModule.ThreeActivity">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="30sp"
-        android:textColor="#000"
-        android:text="three"/>
+    <com.spy.easyframe.ui.widget.TitleBar
+        android:id="@+id/mTitle"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+    <com.youth.banner.Banner
+        android:id="@+id/banner"
+        android:layout_below="@+id/mTitle"
+        android:layout_width="fill_parent"
+        android:layout_height="120dp"/>
 </RelativeLayout>
