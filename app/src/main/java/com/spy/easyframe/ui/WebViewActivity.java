@@ -141,6 +141,11 @@ public class WebViewActivity extends BaseActivity {
         });
     }
 
+    @Override
+    protected void injectComponent() {
+
+    }
+
     private void loadUrl() {
         if (mUrl != null) {
             if (mUrl.startsWith("http")) {

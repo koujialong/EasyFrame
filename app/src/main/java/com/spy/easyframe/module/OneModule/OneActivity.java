@@ -1,16 +1,22 @@
 package com.spy.easyframe.module.OneModule;
 
 import android.os.Bundle;
-import android.util.Log;
 
 import com.spy.easyframe.R;
+import com.spy.easyframe.dagger.Component.DaggerOneActivityComponent;
+import com.spy.easyframe.dagger.Component.OneActivityComponent;
+import com.spy.easyframe.dagger.Module.OneActivityModule;
 import com.spy.easyframe.model.BannerModel;
-import com.spy.easyframe.module.OneModule.impl.IOneActivity;
-import com.spy.easyframe.module.impl.IBannerView;
+import com.spy.easyframe.model.LiveListModel;
+import com.spy.easyframe.module.BaseImpl.IBannerView;
+import com.spy.easyframe.module.BaseImpl.ILiveListView;
 import com.spy.easyframe.presenter.BannerPresenter;
+import com.spy.easyframe.presenter.LiveListPresenter;
+import com.spy.easyframe.system.AppApplication;
 import com.spy.easyframe.ui.BaseActivity;
 import com.spy.easyframe.ui.WebViewActivity;
 import com.spy.easyframe.ui.widget.TitleBar;
+import com.spy.easyframe.util.LogUtils;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
@@ -18,10 +24,12 @@ import com.youth.banner.listener.OnBannerClickListener;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class OneActivity extends BaseActivity implements IBannerView {
+public class OneActivity extends BaseActivity implements IBannerView ,ILiveListView{
 
     private static final String TAG = OneActivity.class.getSimpleName();
 
@@ -29,7 +37,10 @@ public class OneActivity extends BaseActivity implements IBannerView {
     Banner banner;
     @Bind(R.id.mTitle)
     TitleBar mTitle;
-    private BannerPresenter oneActivityPresenter;
+    @Inject
+    BannerPresenter oneActivityPresenter;
+    @Inject
+    LiveListPresenter liveListPresenter;
     private String images[];
     private List<BannerModel.ItemBean> itemBeens;
 
@@ -38,6 +49,7 @@ public class OneActivity extends BaseActivity implements IBannerView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_one);
         ButterKnife.bind(this);
+        injectComponent();
         initData();
         initListener();
     }
@@ -45,8 +57,8 @@ public class OneActivity extends BaseActivity implements IBannerView {
     @Override
     protected void initData() {
         mTitle.setTitleInfo("首页");
-        oneActivityPresenter = new BannerPresenter(this, subscription);
         oneActivityPresenter.getDate(1, 10, "");
+        liveListPresenter.getDate();
     }
 
     @Override
@@ -60,6 +72,15 @@ public class OneActivity extends BaseActivity implements IBannerView {
                 }
             }
         });
+    }
+
+    @Override
+    protected void injectComponent() {
+        OneActivityComponent build = DaggerOneActivityComponent.builder()
+                .appComponent(AppApplication.getComponent())
+                .oneActivityModule(new OneActivityModule(this,subscription))
+                .build();
+        build.inject(this);
     }
 
     @Override
@@ -87,5 +108,12 @@ public class OneActivity extends BaseActivity implements IBannerView {
         banner.setDelayTime(2000);
         //设置指示器的位置
         banner.setIndicatorGravity(BannerConfig.CENTER);
+    }
+
+    @Override
+    public void showLiveList(List<LiveListModel.ItemBean.TeamListBean> list) {
+        for (LiveListModel.ItemBean.TeamListBean teamListBean : list) {
+            LogUtils.e("TAG",teamListBean.getLiveTeam().getName());
+        }
     }
 }

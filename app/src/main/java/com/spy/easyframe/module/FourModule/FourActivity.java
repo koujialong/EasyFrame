@@ -24,6 +24,11 @@ public class FourActivity extends BaseActivity {
     }
 
     @Override
+    protected void injectComponent() {
+
+    }
+
+    @Override
     public String getActivityTag() {
         return null;
     }

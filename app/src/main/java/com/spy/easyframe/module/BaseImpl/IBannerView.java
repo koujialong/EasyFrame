@@ -1,4 +1,4 @@
-package com.spy.easyframe.module.impl;
+package com.spy.easyframe.module.BaseImpl;
 
 import com.spy.easyframe.model.BannerModel;
 

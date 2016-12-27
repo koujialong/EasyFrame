@@ -2,10 +2,12 @@ package com.spy.easyframe.presenter;
 
 import com.spy.easyframe.model.LiveListModel;
 import com.spy.easyframe.model.impl.IBaseModel;
-import com.spy.easyframe.module.impl.ILiveListView;
+import com.spy.easyframe.module.BaseImpl.ILiveListView;
 import com.spy.easyframe.presenter.impl.ILiveListPresernter;
 
 import java.util.List;
+
+import javax.inject.Inject;
 
 import rx.Subscription;
 
@@ -18,6 +20,7 @@ public class LiveListPresenter implements ILiveListPresernter{
     private IBaseModel iBaseModel;
     private Subscription subscription;
 
+    @Inject
     public LiveListPresenter(ILiveListView iLiveListView, Subscription subscription) {
         this.iLiveListView = iLiveListView;
         this.subscription = subscription;

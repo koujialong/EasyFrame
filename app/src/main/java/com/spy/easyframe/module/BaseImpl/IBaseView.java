@@ -1,4 +1,4 @@
-package com.spy.easyframe.module.impl;
+package com.spy.easyframe.module.BaseImpl;
 
 /**
  * Created by Administrator on 2016/12/24.

@@ -5,14 +5,13 @@ import android.os.Bundle;
 import com.spy.easyframe.R;
 import com.spy.easyframe.model.BannerModel;
 import com.spy.easyframe.model.LiveListModel;
-import com.spy.easyframe.module.impl.IBannerView;
-import com.spy.easyframe.module.impl.ILiveListView;
+import com.spy.easyframe.module.BaseImpl.IBannerView;
+import com.spy.easyframe.module.BaseImpl.ILiveListView;
 import com.spy.easyframe.presenter.BannerPresenter;
 import com.spy.easyframe.presenter.LiveListPresenter;
 import com.spy.easyframe.ui.BaseActivity;
 import com.spy.easyframe.ui.WebViewActivity;
 import com.spy.easyframe.ui.widget.TitleBar;
-import com.spy.easyframe.util.AnimPFRecycler.AnimRFRecyclerView;
 import com.spy.easyframe.util.LogUtils;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
@@ -40,8 +39,6 @@ ThreeActivity extends BaseActivity implements IBannerView, ILiveListView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_three);
         ButterKnife.bind(this);
-        initData();
-        initListener();
     }
 
     @Override
@@ -62,6 +59,11 @@ ThreeActivity extends BaseActivity implements IBannerView, ILiveListView {
                 WebViewActivity.startActivity(ThreeActivity.this, itemBean.getTitle(), itemBean.getUrl());
             }
         });
+    }
+
+    @Override
+    protected void injectComponent() {
+
     }
 
     @Override

@@ -47,6 +47,9 @@ public abstract class BaseActivity extends FragmentActivity {
         addActivity(this);
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
+//        injectComponent();//Dagger2绑定
+//        initData();
+//        initListener();
         //切换动画
 //        overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_exit_from_right);
     }
@@ -54,6 +57,8 @@ public abstract class BaseActivity extends FragmentActivity {
     protected abstract  void initData();
 
     protected abstract void initListener();
+
+    protected abstract void injectComponent();
 
     @Override
     protected void onResume() {
@@ -247,5 +252,14 @@ public abstract class BaseActivity extends FragmentActivity {
             return super.dispatchTouchEvent(event);
         }
     }
+
+//    /**
+//    * 获得activity的component
+//    */
+//    protected AppComponent getActivityComponent(){
+//        return DaggerAppComponent.builder()
+//                .appModule(new ActivityModule(this))
+//                .build();
+//    }
 
 }
