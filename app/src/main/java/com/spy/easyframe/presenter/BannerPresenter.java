@@ -18,6 +18,7 @@ public class BannerPresenter implements IBannerPresenter {
     private IBaseModel iBaseModel;
     private IBannerView iBannerView;
     protected Subscription subscription;
+    private List<BannerModel.ItemBean> list;
 
     @Inject
     public BannerPresenter(IBannerView iBannerView, Subscription subscription) {
@@ -34,12 +35,24 @@ public class BannerPresenter implements IBannerPresenter {
 
     @Override
     public void getDateSucceed(Object object) {
-        iBannerView.showBanner((List<BannerModel.ItemBean>) object);
+        list=(List<BannerModel.ItemBean>) object;
+        iBannerView.showBanner(list);
     }
 
     @Override
     public void getDateError() {
 
+    }
+
+    public String[] getImages(){
+        if (list!=null) {
+            String images[] = new String[list.size()];
+            for (int i = 0; i < list.size(); i++) {
+                images[i] = list.get(i).getImg_url();
+            }
+            return images;
+        }
+        return null;
     }
 
 }

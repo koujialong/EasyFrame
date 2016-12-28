@@ -40,7 +40,7 @@ public abstract class BaseActivity extends FragmentActivity {
     private int upX=0;
     private long downTime=0;
     private long upTime=0;
-    public Subscription subscription;
+    public Subscription subscription,rxSubscription;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +90,9 @@ public abstract class BaseActivity extends FragmentActivity {
         //HttpTaskManager.cancelAllRequests(getActivityTag());
         if (subscription!=null&&!subscription.isUnsubscribed()){
             subscription.unsubscribe();
+        }
+        if (rxSubscription!=null&&!rxSubscription.isUnsubscribed()){
+            rxSubscription.unsubscribe();
         }
     }
 

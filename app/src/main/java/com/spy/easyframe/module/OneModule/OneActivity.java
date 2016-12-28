@@ -3,6 +3,7 @@ package com.spy.easyframe.module.OneModule;
 import android.os.Bundle;
 
 import com.spy.easyframe.R;
+import com.spy.easyframe.cache.preference.PrefrenceTools;
 import com.spy.easyframe.dagger.Component.DaggerOneActivityComponent;
 import com.spy.easyframe.dagger.Component.OneActivityComponent;
 import com.spy.easyframe.dagger.Module.OneActivityModule;
@@ -17,6 +18,7 @@ import com.spy.easyframe.ui.BaseActivity;
 import com.spy.easyframe.ui.WebViewActivity;
 import com.spy.easyframe.ui.widget.TitleBar;
 import com.spy.easyframe.util.LogUtils;
+import com.spy.easyframe.util.RxBus;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
@@ -28,6 +30,8 @@ import javax.inject.Inject;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import rx.Subscription;
+import rx.functions.Action1;
 
 public class OneActivity extends BaseActivity implements IBannerView ,ILiveListView{
 
@@ -44,6 +48,20 @@ public class OneActivity extends BaseActivity implements IBannerView ,ILiveListV
     private String images[];
     private List<BannerModel.ItemBean> itemBeens;
 
+    Subscription rxSubscription=RxBus.getInstance().toObservable(BannerModel.class)
+            .subscribe(new Action1<BannerModel>() {
+                           @Override
+                           public void call(BannerModel bannerModel) {
+                                LogUtils.e("TAG",bannerModel.getMsg());
+                           }
+                       },
+                    new Action1<Throwable>() {
+                        @Override
+                        public void call(Throwable throwable) {
+
+                        }
+                    });
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +70,7 @@ public class OneActivity extends BaseActivity implements IBannerView ,ILiveListV
         injectComponent();
         initData();
         initListener();
+        PrefrenceTools.updateSlogen(this,"啦啦啦啦啦，我存储成功了");
     }
 
     @Override
@@ -91,21 +110,17 @@ public class OneActivity extends BaseActivity implements IBannerView ,ILiveListV
     @Override
     public void showBanner(List<BannerModel.ItemBean> itemBeens) {
         this.itemBeens = itemBeens;
-        images = new String[itemBeens.size()];
-        for (int i = 0; i < itemBeens.size(); i++) {
-            images[i] = itemBeens.get(i).getImg_url();
-        }
+        String[] images = oneActivityPresenter.getImages();
         //设置banner样式
         banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE);
         //设置图片加载器
-        //banner.setImages(images);
         banner.setImages(images);
         //设置banner动画效果
         banner.setBannerAnimation(Transformer.Default);
         //设置自动轮播
         banner.isAutoPlay(true);
         //设置轮播时间
-        banner.setDelayTime(2000);
+        banner.setDelayTime(1500);
         //设置指示器的位置
         banner.setIndicatorGravity(BannerConfig.CENTER);
     }

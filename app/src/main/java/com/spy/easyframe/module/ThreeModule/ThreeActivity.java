@@ -3,6 +3,7 @@ package com.spy.easyframe.module.ThreeModule;
 import android.os.Bundle;
 
 import com.spy.easyframe.R;
+import com.spy.easyframe.cache.preference.PrefrenceTools;
 import com.spy.easyframe.model.BannerModel;
 import com.spy.easyframe.model.LiveListModel;
 import com.spy.easyframe.module.BaseImpl.IBannerView;
@@ -13,6 +14,7 @@ import com.spy.easyframe.ui.BaseActivity;
 import com.spy.easyframe.ui.WebViewActivity;
 import com.spy.easyframe.ui.widget.TitleBar;
 import com.spy.easyframe.util.LogUtils;
+import com.spy.easyframe.util.RxBus;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
@@ -39,6 +41,18 @@ ThreeActivity extends BaseActivity implements IBannerView, ILiveListView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_three);
         ButterKnife.bind(this);
+        initData();
+        initListener();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                BannerModel bannerModel = new BannerModel();
+                bannerModel.setMsg("啦啦，发送消息了");
+                RxBus.getInstance().post(bannerModel);
+            }
+        }).start();
+        String slogen = PrefrenceTools.getSlogen(this);
+        LogUtils.e("TAG",slogen);
     }
 
     @Override
@@ -74,14 +88,10 @@ ThreeActivity extends BaseActivity implements IBannerView, ILiveListView {
     @Override
     public void showBanner(List<BannerModel.ItemBean> itemBeens) {
         this.itemBeens = itemBeens;
-        images = new String[itemBeens.size()];
-        for (int i = 0; i < itemBeens.size(); i++) {
-            images[i] = itemBeens.get(i).getImg_url();
-        }
+        images = bannerPresenter.getImages();
         //设置banner样式
         banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE);
         //设置图片加载器
-        //banner.setImages(images);
         banner.setImages(images);
         //设置banner动画效果
         banner.setBannerAnimation(Transformer.Default);

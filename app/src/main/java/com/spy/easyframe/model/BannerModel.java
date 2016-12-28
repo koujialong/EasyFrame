@@ -179,6 +179,9 @@ public class BannerModel implements IBaseModel{
         }
     }
 
+    public BannerModel() {
+    }
+
     @Override
     public void sendRequestToServer(Subscription subscription) {
         if (subscription!=null&&!subscription.isUnsubscribed()){
