@@ -3,6 +3,7 @@ package com.spy.easyframe.module.ThreeModule;
 import android.os.Bundle;
 
 import com.spy.easyframe.R;
+import com.spy.easyframe.cache.disk.DiskCacheManager;
 import com.spy.easyframe.cache.preference.PrefrenceTools;
 import com.spy.easyframe.model.BannerModel;
 import com.spy.easyframe.model.LiveListModel;
@@ -20,6 +21,7 @@ import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
 import com.youth.banner.listener.OnBannerClickListener;
 
+import java.io.Serializable;
 import java.util.List;
 
 import butterknife.Bind;
@@ -53,6 +55,20 @@ ThreeActivity extends BaseActivity implements IBannerView, ILiveListView {
         }).start();
         String slogen = PrefrenceTools.getSlogen(this);
         LogUtils.e("TAG",slogen);
+        BannerModel model=new BannerModel();
+        model.setMsg("啦啦啦啦我的本地缓存,实体方式");
+        //disk缓存测试
+        User user=new User("kjl");
+        DiskCacheManager.getInstance(this).remove(DiskCacheManager.TEST_MODEL);
+        DiskCacheManager.getInstance(this).put(DiskCacheManager.TEST_MODEL, 6964);
+    }
+
+    public class User implements Serializable{
+        String name;
+
+        public User(String name) {
+            this.name = name;
+        }
     }
 
     @Override

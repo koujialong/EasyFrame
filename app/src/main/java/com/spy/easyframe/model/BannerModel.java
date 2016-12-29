@@ -6,6 +6,7 @@ import com.spy.easyframe.model.impl.IBaseModel;
 import com.spy.easyframe.network.NetWork;
 import com.spy.easyframe.presenter.impl.IBannerPresenter;
 
+import java.io.Serializable;
 import java.util.List;
 
 import rx.Observer;
@@ -17,7 +18,7 @@ import rx.schedulers.Schedulers;
 /**
  * Created by Administrator on 2016/12/22.
  */
-public class BannerModel implements IBaseModel{
+public class BannerModel implements IBaseModel,Serializable{
 
     /**
      * code : 0
