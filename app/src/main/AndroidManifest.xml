@@ -20,7 +20,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".action.ui.ActionEntryActivity"
+        <activity
+            android:name=".action.ui.ActionEntryActivity"
             android:exported="true"
             android:launchMode="singleInstance"
             android:theme="@android:style/Theme.NoDisplay">

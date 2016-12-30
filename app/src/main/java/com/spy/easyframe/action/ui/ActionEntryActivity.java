@@ -31,17 +31,18 @@ public class ActionEntryActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
         if (intent != null) {
+            String dataPath = intent.getDataString();
+            //防止action协议频繁调起，时间差为1s
             String time = DiskCacheManager.getInstance(this).getAsString(DiskCacheManager.ACTION_TIME);
             if (TextUtils.isEmpty(time)){
                 time="0";
             }
             long tm=Long.parseLong(time);
-            String dataPath = intent.getDataString();
             if (StringUtils.isNotBlank(dataPath)) {
                 if (System.currentTimeMillis()-tm>1000) {
                     DiskCacheManager.getInstance(this).put(DiskCacheManager.ACTION_TIME,System.currentTimeMillis()+"");
                     if (appMainActivityIsRunning()) {
-                        //startActivity(IntentTools.getMainActivity(QilinEntryActivity.this,dataPath));
+                        //把应用从后台唤起到前台
                         appToTopStack();
                         ActionManager manager = new ActionManager(MainActivity.getInstance(), dataPath);
                         if (manager.isVailidAction()) {
