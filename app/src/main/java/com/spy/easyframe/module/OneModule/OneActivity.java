@@ -71,6 +71,7 @@ public class OneActivity extends BaseActivity implements IBannerView ,ILiveListV
         initData();
         initListener();
         PrefrenceTools.updateSlogen(this,"啦啦啦啦啦，我存储成功了");
+        PrefrenceTools.updateSlogen(this,"这个是一条来自mac的存储信息");
     }
 
     @Override
