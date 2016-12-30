@@ -1,16 +1,20 @@
 package com.spy.easyframe.ui;
 
 import android.app.ActivityGroup;
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.spy.easyframe.R;
+import com.spy.easyframe.action.core.ActionManager;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class MainActivity extends ActivityGroup {
+    private static MainActivity instance=null;
     /**
      * param
      */
@@ -37,9 +41,22 @@ public class MainActivity extends ActivityGroup {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        instance=this;
         initView();
         switchToOneTab();
         ButterKnife.bind(this);
+        parseIntent();
+    }
+
+    private void parseIntent() {
+        Intent intent=getIntent();
+        String datePath = intent.getStringExtra("datePath");
+        if (!TextUtils.isEmpty(datePath)) {
+            ActionManager manager = new ActionManager(MainActivity.getInstance(), datePath);
+            if (manager.isVailidAction()) {
+                manager.processAction();
+            }
+        }
     }
 
     private void initView() {
@@ -59,6 +76,11 @@ public class MainActivity extends ActivityGroup {
 //                break;
 //        }
 //    }
+
+
+    public static MainActivity getInstance() {
+        return instance;
+    }
 
     /**
      * 跳转到页2

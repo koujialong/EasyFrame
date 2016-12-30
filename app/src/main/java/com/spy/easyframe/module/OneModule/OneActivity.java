@@ -1,5 +1,7 @@
 package com.spy.easyframe.module.OneModule;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import com.spy.easyframe.R;
@@ -71,6 +73,8 @@ public class OneActivity extends BaseActivity implements IBannerView ,ILiveListV
         initData();
         initListener();
         PrefrenceTools.updateSlogen(this,"啦啦啦啦啦，我存储成功了");
+        Intent intent=new Intent(Intent.ACTION_VIEW,Uri.parse("spy://easyframe.spy.com?action=101"));
+        startActivity(intent);
     }
 
     @Override
