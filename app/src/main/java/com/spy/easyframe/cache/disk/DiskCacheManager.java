@@ -23,6 +23,7 @@ public class DiskCacheManager extends DiskLruCacheHelper {
      */
     public static final String TEST_DATA = "TEST_DATA";
     public static final String TEST_MODEL = "TEST_MODEL";
+    public static final String ACTION_TIME="ACTION_TIME";
     public static final String KEY_TICK_CHART = "KEY_TICK_CHART";
 
     private DiskCacheManager(Context context, String dirName) throws IOException {

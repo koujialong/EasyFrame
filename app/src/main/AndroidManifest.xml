@@ -20,6 +20,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".action.ui.ActionEntryActivity"
+            android:exported="true"
+            android:launchMode="singleInstance"
+            android:theme="@android:style/Theme.NoDisplay">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+
+                <data
+                    android:host="easyframe.spy.com"
+                    android:scheme="spy"/>
+            </intent-filter>
+        </activity>
         <activity android:name=".system.ImageActivity" />
         <activity android:name=".ui.WebViewActivity" />
         <activity android:name=".module.OneModule.OneActivity" />
