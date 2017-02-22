@@ -1,33 +1,48 @@
 package com.spy.easyframe.module.TwoModule;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
+import com.spy.easyframe.Chart.TickChart;
 import com.spy.easyframe.R;
-import com.spy.easyframe.model.LiveListModel;
-import com.spy.easyframe.module.BaseImpl.ILiveListView;
-import com.spy.easyframe.presenter.LiveListPresenter;
+import com.spy.easyframe.model.TickChartModel;
+import com.spy.easyframe.module.BaseImpl.IChartView;
+import com.spy.easyframe.presenter.ChartPersenter;
 import com.spy.easyframe.ui.BaseActivity;
-import com.spy.easyframe.util.LogUtils;
 
-import java.util.List;
-
-public class TwoActivity extends BaseActivity implements ILiveListView{
-    private LiveListPresenter liveListPresenter;
+public class TwoActivity extends BaseActivity implements IChartView{
+    private ChartPersenter chartPersenter;
+    private TickChart tick_chart;
+    private Button refrash;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_two);
+        initView();
+        initData();
+        initListener();
+    }
+
+    private void initView() {
+        tick_chart= (TickChart) findViewById(R.id.tick_chart);
+        refrash= (Button) findViewById(R.id.refrash);
     }
 
     @Override
     protected void initData() {
-        liveListPresenter=new LiveListPresenter(this,subscription);
-        liveListPresenter.getDate(1,10,"");
+        chartPersenter=new ChartPersenter(this);
+        chartPersenter.getDate(subscription,"3");
     }
 
     @Override
     protected void initListener() {
-
+        refrash.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                chartPersenter.getDate(subscription,"3");
+            }
+        });
     }
 
     @Override
@@ -41,9 +56,8 @@ public class TwoActivity extends BaseActivity implements ILiveListView{
     }
 
     @Override
-    public void showLiveList(List<LiveListModel.ItemBean.TeamListBean> list) {
-        for (LiveListModel.ItemBean.TeamListBean teamListBean : list) {
-            LogUtils.e("TAG",teamListBean.getLiveTeam().getName());
-        }
+    public void showChart(TickChartModel model) {
+        int count=21*60+1;
+        tick_chart.setLineData(model,count);
     }
 }

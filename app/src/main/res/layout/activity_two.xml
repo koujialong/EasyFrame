@@ -4,10 +4,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.spy.easyframe.module.TwoModule.TwoActivity">
-    <TextView
+    <com.spy.easyframe.Chart.TickChart
+        android:id="@+id/tick_chart"
+        android:layout_centerInParent="true"
+        android:layout_width="300dp"
+        android:layout_height="200dp" />
+    <Button
+        android:id="@+id/refrash"
+        android:layout_below="@+id/tick_chart"
         android:layout_width="wrap_content"
+        android:layout_centerHorizontal="true"
         android:layout_height="wrap_content"
-        android:textSize="30sp"
-        android:textColor="#000"
-        android:text="two"/>
+        android:text="刷新"/>
 </RelativeLayout>

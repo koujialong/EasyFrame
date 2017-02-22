@@ -5,7 +5,7 @@ import rx.Subscription;
 /**
  * Created by Administrator on 2016/12/23.
  */
-public interface IBaseModel {
+public interface IBaseModel{
     //请求数据
     void sendRequestToServer(Subscription subscription);
     //设置请求方式

@@ -1,6 +1,7 @@
 package com.spy.easyframe.network;
 
 import com.spy.easyframe.network.api.BaseApi;
+import com.spy.easyframe.network.api.ChartApi;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -19,6 +20,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 */
 public class NetWork {
     private static BaseApi bannerApi;
+    private static ChartApi chartApi;
     private static HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor().
             setLevel(HttpLoggingInterceptor.Level.BASIC);
     private static OkHttpClient okHttpClient=new OkHttpClient.Builder().
@@ -35,6 +37,13 @@ public class NetWork {
             bannerApi=getRetrofit().create(BaseApi.class);
         }
         return bannerApi;
+    }
+
+    public static ChartApi getChartApi(){
+        if (chartApi==null) {
+            chartApi=getRetrofit().create(ChartApi.class);
+        }
+        return chartApi;
     }
 
     private static Retrofit getRetrofit(){
