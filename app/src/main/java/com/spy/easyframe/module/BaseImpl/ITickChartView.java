@@ -5,6 +5,6 @@ import com.spy.easyframe.model.TickChartModel;
 /**
  * Created by Administrator on 2017/2/22.
  */
-public interface IChartView {
+public interface ITickChartView {
     void showChart(TickChartModel model);
 }

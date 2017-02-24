@@ -7,12 +7,12 @@ import android.widget.Button;
 import com.spy.easyframe.Chart.TickChart;
 import com.spy.easyframe.R;
 import com.spy.easyframe.model.TickChartModel;
-import com.spy.easyframe.module.BaseImpl.IChartView;
-import com.spy.easyframe.presenter.ChartPersenter;
+import com.spy.easyframe.module.BaseImpl.ITickChartView;
+import com.spy.easyframe.presenter.TickChartPersenter;
 import com.spy.easyframe.ui.BaseActivity;
 
-public class TwoActivity extends BaseActivity implements IChartView{
-    private ChartPersenter chartPersenter;
+public class TwoActivity extends BaseActivity implements ITickChartView{
+    private TickChartPersenter chartPersenter;
     private TickChart tick_chart;
     private Button refrash;
     @Override
@@ -31,7 +31,7 @@ public class TwoActivity extends BaseActivity implements IChartView{
 
     @Override
     protected void initData() {
-        chartPersenter=new ChartPersenter(this);
+        chartPersenter=new TickChartPersenter(this);
         chartPersenter.getDate(subscription,"3");
     }
 

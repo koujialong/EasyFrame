@@ -1,7 +1,7 @@
 package com.spy.easyframe.presenter;
 
 import com.spy.easyframe.model.TickChartModel;
-import com.spy.easyframe.module.BaseImpl.IChartView;
+import com.spy.easyframe.module.BaseImpl.ITickChartView;
 import com.spy.easyframe.network.NetWork;
 import com.spy.easyframe.presenter.impl.IBasePresenter;
 import com.spy.easyframe.util.LogUtils;
@@ -14,9 +14,9 @@ import rx.schedulers.Schedulers;
 /**
  * Created by Administrator on 2017/2/22.
  */
-public class ChartPersenter implements IBasePresenter{
-    private IChartView iChartView;
-    public ChartPersenter(IChartView iChartView) {
+public class TickChartPersenter implements IBasePresenter{
+    private ITickChartView iChartView;
+    public TickChartPersenter(ITickChartView iChartView) {
         this.iChartView=iChartView;
     }
 

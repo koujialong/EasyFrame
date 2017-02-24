@@ -229,32 +229,32 @@ public abstract class BaseActivity extends FragmentActivity {
             moveX= (int) event.getRawX();
             if (downX<50){
                 return true;
-            }else {
-                return super.dispatchTouchEvent(event);
-            }
-        }else if (event.getAction()== MotionEvent.ACTION_UP){
-            upX= (int) event.getRawX();
-            upTime= System.currentTimeMillis();
-            if (downX<50&&downX!=0){
-                if (moveX-downX>= DisplayUtils.getScreenWidth(this)/3&&upTime-downTime<500){
-                    if (!sActivities.empty()) {
-                        for (BaseActivity activity : sActivities) {
-                            if (activity != null && !activity.isFinishing()) {
-                                    finish();
-                            }
-                        }
-                    }
-                    return true;
-                }else {
-                    return super.dispatchTouchEvent(event);
-                }
-            }else {
-                return super.dispatchTouchEvent(event);
-            }
-        }else {
-            return super.dispatchTouchEvent(event);
+}else {
+        return super.dispatchTouchEvent(event);
         }
-    }
+        }else if (event.getAction()== MotionEvent.ACTION_UP){
+        upX= (int) event.getRawX();
+        upTime= System.currentTimeMillis();
+        if (downX<50&&downX!=0){
+        if (moveX-downX>= DisplayUtils.getScreenWidth(this)/3&&upTime-downTime<500){
+        if (!sActivities.empty()) {
+        for (BaseActivity activity : sActivities) {
+        if (activity != null && !activity.isFinishing()) {
+        finish();
+        }
+        }
+        }
+        return true;
+        }else {
+        return super.dispatchTouchEvent(event);
+        }
+        }else {
+        return super.dispatchTouchEvent(event);
+        }
+        }else {
+        return super.dispatchTouchEvent(event);
+        }
+        }
 
 //    /**
 //    * 获得activity的component

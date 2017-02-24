@@ -4,10 +4,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.spy.easyframe.module.FourModule.FourActivity">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="30sp"
-        android:textColor="#000"
-        android:text="four"/>
+    <com.spy.easyframe.Chart.TickChart
+        android:id="@+id/chart"
+        android:layout_width="fill_parent"
+        android:layout_height="200dp"/>
+
+    <com.spy.easyframe.Chart.CandleStackChart
+        android:layout_below="@+id/chart"
+        android:layout_marginTop="30dp"
+        android:id="@+id/candle_chart"
+        android:layout_width="fill_parent"
+        android:layout_height="200dp"/>
+
+    <com.spy.easyframe.Chart.BarChart
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/candle_chart"
+        android:id="@+id/bar_chart"
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"/>
 </RelativeLayout>
