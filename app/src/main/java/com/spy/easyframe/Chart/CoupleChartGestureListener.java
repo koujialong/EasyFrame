@@ -41,6 +41,7 @@ public class CoupleChartGestureListener implements OnChartGestureListener{
     @Override
     public void onChartLongPressed(MotionEvent motionEvent) {
         lockChart();
+       //LogUtils.e("TAG",motionEvent.getActionIndex()+"");
     }
 
     @Override
@@ -55,12 +56,12 @@ public class CoupleChartGestureListener implements OnChartGestureListener{
 
     @Override
     public void onChartFling(MotionEvent motionEvent, MotionEvent motionEvent1, float v, float v1) {
-
+        syncCharts();
     }
 
     @Override
     public void onChartScale(MotionEvent motionEvent, float v, float v1) {
-
+        syncCharts();
     }
 
     @Override
@@ -148,7 +149,6 @@ public class CoupleChartGestureListener implements OnChartGestureListener{
             @Override
             public void onValueSelected(Entry entry, Highlight highlight) {
                 desChart.highlightValues(new Highlight[]{highlight});
-
             }
 
             @Override
@@ -161,7 +161,6 @@ public class CoupleChartGestureListener implements OnChartGestureListener{
             @Override
             public void onValueSelected(Entry entry, Highlight highlight) {
                 srcChart.highlightValues(new Highlight[]{highlight});
-
             }
 
             @Override
@@ -170,4 +169,5 @@ public class CoupleChartGestureListener implements OnChartGestureListener{
             }
         });
     }
+
 }
