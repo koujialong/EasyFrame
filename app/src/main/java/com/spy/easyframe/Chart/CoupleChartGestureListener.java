@@ -149,6 +149,7 @@ public class CoupleChartGestureListener implements OnChartGestureListener{
             @Override
             public void onValueSelected(Entry entry, Highlight highlight) {
                 desChart.highlightValues(new Highlight[]{highlight});
+                desChart.setMaxVisibleValueCount(srcChart.getMaxVisibleCount());
             }
 
             @Override
@@ -161,6 +162,7 @@ public class CoupleChartGestureListener implements OnChartGestureListener{
             @Override
             public void onValueSelected(Entry entry, Highlight highlight) {
                 srcChart.highlightValues(new Highlight[]{highlight});
+                srcChart.setMaxVisibleValueCount(desChart.getMaxVisibleCount());
             }
 
             @Override

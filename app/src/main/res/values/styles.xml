@@ -37,5 +37,35 @@
         <item name="android:scaleType">centerInside</item>
     </style>
 
+    <!--对话框基础显示-->
+    <style name="dialog" parent="@android:style/Theme.Dialog">
+        <!--悬浮在activity之上-->
+        <item name="android:windowIsFloating">true</item>
+        <!--无标题-->
+        <item name="android:windowNoTitle">true</item>
+        <!--背景透明-->
+        <item name="android:windowBackground">@color/transparent</item>
+    </style>
 
+    <!--对话框背景样式-->
+    <style name="DialogBackgroundStyle">
+        <item name="android:layout_width">275dip</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:minWidth">275dip</item>
+        <item name="android:layout_marginLeft">0dip</item>
+        <item name="android:layout_marginRight">0dip</item>
+        <item name="android:padding">0dip</item>
+    </style>
+
+    <style name="TextAppearance">
+        <item name="android:textColor">@color/text_default</item>
+    </style>
+
+    <!-- 字体TextAppearance -->
+    <style name="TextAppearance.Content">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/dark2</item>
+    </style>
 </resources>

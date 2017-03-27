@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge style="@style/DialogBackgroundStyle"
+              xmlns:android="http://schemas.android.com/apk/res/android"
+              android:baselineAligned="false"
+              android:gravity="center">
+
+    <!-- dialog footer -->
+    <RelativeLayout
+        android:layout_width="275dp"
+        android:layout_height="wrap_content"
+        >
+        <View
+            android:id="@+id/dialog_button_ok_view"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/c_e2e6eb"/>
+        <Button
+            android:id="@+id/dialog_button_ok"
+            android:layout_width="275dp"
+            android:layout_height="45dp"
+            android:layout_below="@+id/dialog_button_ok_view"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1.0"
+            android:background="@drawable/dialog_button_selector"
+            android:text="@string/default_dialog_confirm"
+            android:textSize="@dimen/text_size_medium"
+            android:textColor="@color/c_3d3e42">
+        </Button>
+    </RelativeLayout>
+
+</merge>

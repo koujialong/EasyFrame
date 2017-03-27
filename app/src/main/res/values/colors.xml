@@ -3,7 +3,17 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="white">#ffffff</color>
+    <!--字体颜色-->
+    <color name="dark2">#404042</color>
 
-    <color name="white">#fff</color>
+    <!--对话框-->
+    <color name="text_default">#2c2c2c</color>
+    <color name="bg_press_color">#d1d4d7</color>
+
     <color name="transform50">#7d000000</color>
+    <color name="transparent">#00000000</color>
+    <color name="c_3d3e42">#3d3e42</color>
+    <color name="c_e2e6eb">#e2e6eb</color>
+    <color name="c_0e2947">#0e2947</color>
 </resources>

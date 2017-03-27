@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+              style="@style/DialogBackgroundStyle"
+              android:baselineAligned="false"
+              android:gravity="center" >
+
+    <!-- dialog footer -->
+    <RelativeLayout
+        android:layout_width="275dip"
+        android:layout_height="45dp"
+        >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/dialog_button_cancel"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1.0"
+                android:textSize="@dimen/text_size_medium"
+                android:background="@drawable/dialog_button_selector_left"
+                android:text="@string/default_dialog_cancle" >
+            </Button>
+
+            <ImageView
+                android:id="@+id/vertical_line1"
+                android:layout_width="1px"
+                android:layout_height="fill_parent"
+                android:background="@color/c_e2e6eb"
+                android:contentDescription="@string/app_name" />
+
+            <Button
+                android:id="@+id/dialog_button_ok"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1.0"
+                android:textSize="@dimen/text_size_medium"
+                android:background="@drawable/dialog_button_selector_right"
+                android:text="@string/default_dialog_confirm" >
+            </Button>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/horizontal_line"
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:layout_alignParentTop="true"
+            android:background="@color/c_e2e6eb"
+            android:contentDescription="@string/app_name" />
+    </RelativeLayout>
+
+</merge>
