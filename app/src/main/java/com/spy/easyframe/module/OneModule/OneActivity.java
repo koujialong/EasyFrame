@@ -18,6 +18,7 @@ import com.spy.easyframe.presenter.LiveListPresenter;
 import com.spy.easyframe.system.AppApplication;
 import com.spy.easyframe.ui.BaseActivity;
 import com.spy.easyframe.ui.WebViewActivity;
+import com.spy.easyframe.ui.widget.DialogBuilder;
 import com.spy.easyframe.ui.widget.TitleBar;
 import com.spy.easyframe.util.LogUtils;
 import com.spy.easyframe.util.RxBus;
@@ -77,6 +78,17 @@ public class OneActivity extends BaseActivity implements IBannerView ,ILiveListV
 
         Intent intent=new Intent(Intent.ACTION_VIEW,Uri.parse("spy://easyframe.spy.com?action=101"));
         startActivity(intent);
+
+        DialogBuilder builder=new DialogBuilder();
+        builder.setOnDialogOneListener(new DialogBuilder.DialogOneListener() {
+            @Override
+            public void onCenterBtnClick() {
+
+            }
+        });
+
+        //builder.buildOneBtnDialogProperty(OneActivity.this,"单按钮对话框","确定");
+        builder.buildDoubleBtnDialogProperty(OneActivity.this,"双按钮对话框");
     }
 
     @Override

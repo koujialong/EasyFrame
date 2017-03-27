@@ -24,6 +24,7 @@ import com.github.mikephil.charting.listener.OnChartGestureListener;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.spy.easyframe.R;
 import com.spy.easyframe.model.TickChartModel;
+import com.spy.easyframe.util.LogUtils;
 import com.spy.easyframe.util.TimeUtils;
 
 import java.math.BigDecimal;
@@ -139,13 +140,17 @@ public class TickChart extends CombinedChart{
                 if (v==0){
                     return TimeUtils.getTimeHHMM(l);
                 }else {
-                    BigDecimal offsetTime =new BigDecimal(v * 60 * 1000);
-                    long time = l + Long.parseLong(offsetTime.toString());
-                    return TimeUtils.getTimeHHMM(time);
+                    LogUtils.e("TAG",v+"");
+//                    if ((int)v==270) {
+                        BigDecimal offsetTime = new BigDecimal(v * 60 * 1000);
+                        long time = l + Long.parseLong(offsetTime.toString());
+                        return TimeUtils.getTimeHHMM(time);
+//                    }else {
+//                        return "";
+//                    }
                 }
             }
         });
-
 
         //左侧Y轴设置
         YAxis leftAxis=getAxisLeft();

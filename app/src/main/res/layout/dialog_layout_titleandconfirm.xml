@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    style="@style/DialogBackgroundStyle"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:baselineAligned="false"
+    android:background="@drawable/round_rectangle_white"
+    android:gravity="center">
+
+    <!-- Dialog Content -->
+    <include
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        layout="@layout/dialog_layout_single_warpcontent"/>
+
+    <!-- dialog footer -->
+    <include
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        layout="@layout/dialog_layout_twobtn"/>
+
+</LinearLayout>
